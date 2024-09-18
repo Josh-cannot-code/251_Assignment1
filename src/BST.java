@@ -65,7 +65,7 @@ public class BST {
                 curr = curr.left;
             }
             curr = stack.pop();
-            values.addLast(curr.val);
+            values.add(curr.val);
             curr = curr.right;
         }
 
