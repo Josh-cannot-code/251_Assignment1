@@ -128,10 +128,5 @@ public class RBTree extends BST {
     @Override
     public void delete(int val) {
         // TODO: Your implementation here
-        // Only difference here is may need to call rebalance at the end
-    }
-
-    // TODO: Pretty sure it self balances
-    private void rebalance() {
     }
 }
