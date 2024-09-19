@@ -55,18 +55,24 @@ class BSTTest {
     @DisplayName("Rotate Right")
     void testRotateRight() {
         GradeableRBT t = new GradeableRBT();
+        ArrayList<Integer> values = new ArrayList<>();
 
-        t.insert(7);
-        t.insert(3);
-        t.insert(18);
-        t.insert(10);
-        t.insert(20);
-        t.insert(8);
-        t.insert(11);
-        t.insert(20);
-        t.insert(22);
-        t.insert(15);
+        values.add(7);
+        values.add(3);
+        values.add(18);
+        values.add(10);
+        values.add(20);
+        values.add(8);
+        values.add(11);
+        values.add(22);
+        values.add(15);
 
-        assertTrue(t.isValidRBTree());
+        t.insertMultiple(values);
+        values.sort(null);
+
+        assertAll(
+                () -> assertTrue(t.isValidRBTree()),
+                () -> assertEquals(t.inOrderTraversal(), values)
+            );
     }
 }

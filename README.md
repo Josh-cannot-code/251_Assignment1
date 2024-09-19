@@ -10,3 +10,10 @@ this enum as the color property for the nodes in your RBTree.
 ## Questions:
 - Should we give them the template file?
 - Should we ask them to provide a check validity implementation?
+
+## Assumptions:
+- We will not add a number that already exists in the tree
+
+## Reminders:
+- Check edge cases, they will not be in the public tests
+ but will be included in private tests

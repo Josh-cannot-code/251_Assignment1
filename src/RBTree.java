@@ -102,27 +102,36 @@ public class RBTree extends BST {
         y.parent = z.parent;
         if (z.parent.right == z) {
             z.parent.right = y;
-        } else {
+        } else if (z.parent.left == z) { // If z in neither right nor left child, it must be the root
             z.parent.left = y;
         }
         z.left = y.right;
         z.left.parent = z;
         y.right = z;
         z.parent = y;
+
+        if (z == root) {
+            root = y;
+        }
     }
 
     private void leftRotate(RBTNode z) {
         RBTNode y = z.right;
         // Swap z with its right child
         y.parent = z.parent;
-        if (z.parent.right == z) {
+        if (z.parent.right == z) { // If z in neither right nor left child, it must be the root
             z.parent.right = y;
-        } else {
+        } else if (z.parent.left == z) {
             z.parent.left = y;
         }
         z.right = y.left;
-        z.left.parent = z;
+        y.left.parent = z;
         z.parent = y;
+        y.left = z;
+
+        if (z == root) {
+            root = y;
+        }
     }
 
     @Override

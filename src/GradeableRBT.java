@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class GradeableRBT extends RBTree{
@@ -49,5 +50,45 @@ public class GradeableRBT extends RBTree{
         }
 
         return true;
+    }
+
+    public ArrayList<Integer> inOrderTraversal() {
+        ArrayList<Integer> values = new ArrayList<Integer>();
+        if (root == nil) {
+            return values;
+        }
+
+        Stack<RBTNode> stack = new Stack<>();
+        RBTNode curr = root;
+
+        while (curr != nil || !stack.isEmpty()) {
+            while (curr !=  nil) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+            curr = stack.pop();
+            values.add(curr.val);
+            curr = curr.right;
+        }
+
+        return values;
+    }
+
+    private boolean isValidBST() {
+        if (root == nil) {
+            return true;
+        }
+
+        // In order traversal, then check against sorted values
+        ArrayList<Integer> values = this.inOrderTraversal();
+
+        ArrayList<Integer> sortedValues = (ArrayList<Integer>) values.clone();
+        sortedValues.sort(null);
+        return values.equals(sortedValues);
+    }
+
+
+    public boolean equals(GradeableRBT tree) {
+        return this.inOrderTraversal().equals(tree.inOrderTraversal());
     }
 }

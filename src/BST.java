@@ -50,43 +50,4 @@ public class BST {
     }
 
 
-    public ArrayList<Integer> inOrderTraversal() {
-        ArrayList<Integer> values = new ArrayList<Integer>();
-        if (root == null) {
-           return values;
-       }
-
-        Stack<Node> stack = new Stack<>();
-        Node curr = root;
-
-        while (curr != null || !stack.isEmpty()) {
-            while (curr !=  null) {
-                stack.push(curr);
-                curr = curr.left;
-            }
-            curr = stack.pop();
-            values.addLast(curr.val);
-            curr = curr.right;
-        }
-
-        return values;
-    }
-
-    private boolean isValidBST() {
-        if (root == null) {
-            return true;
-        }
-
-        // In order traversal, then check against sorted values
-        ArrayList<Integer> values = this.inOrderTraversal();
-
-        ArrayList<Integer> sortedValues = (ArrayList<Integer>) values.clone();
-        sortedValues.sort(null);
-        return values.equals(sortedValues);
-    }
-
-
-    public boolean equals(BST tree) {
-        return this.inOrderTraversal().equals(tree.inOrderTraversal());
-    }
 }
