@@ -1,15 +1,16 @@
-public class RBTree extends BST {
+public class RBTree {
     // Maybe leave this entire class empty
     final RBTNode nil;
     RBTNode root;
 
-    public static class RBTNode extends Node {
+    public static class RBTNode {
         Color color;
         RBTNode left, right;
         RBTNode parent;
+        int val;
 
         public RBTNode(int val, RBTNode parent, Color color) {
-            super(val);
+            this.val = val;
             this.parent = parent;
             this.color = color;
         }
@@ -20,7 +21,6 @@ public class RBTree extends BST {
         root = nil;
     }
 
-    @Override
     public void insert(int val) {
         // TODO: Your implementation here
 
@@ -132,10 +132,5 @@ public class RBTree extends BST {
         if (z == root) {
             root = y;
         }
-    }
-
-    @Override
-    public void delete(int val) {
-        // TODO: Your implementation here
     }
 }

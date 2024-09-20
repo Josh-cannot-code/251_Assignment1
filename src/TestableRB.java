@@ -1,10 +1,17 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class GradeableRBT extends RBTree{
+public class TestableRB extends RBTree{
+
+   public void insertMultiple(ArrayList<Integer> values) {
+       for (int value : values) {
+           this.insert(value);
+       }
+   }
+
     private int checkDescendantPaths(RBTNode node) {
        if (node == nil)  {
-           return 0;
+           return 1;
        }
 
        int rightPaths = checkDescendantPaths(node.right);
@@ -17,14 +24,14 @@ public class GradeableRBT extends RBTree{
        }
 
     }
-    // TODO: maybe property 3 if allow for solutions not using nil
+
     public boolean isValidRBTree() {
-        // Property 2
+        // Property 2: root node must be black
         if (root.color != Color.BLACK) {
             return false;
         }
 
-        Stack<RBTNode> stack = new Stack<RBTNode>();
+        Stack<RBTNode> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()) {
             RBTNode node = stack.pop();
@@ -32,24 +39,27 @@ public class GradeableRBT extends RBTree{
                continue;
             }
 
-            // Property 1
+            // Property 1: each node must be either red or black
             if (node.color != Color.BLACK && node.color != Color.RED) {
                 return false;
             }
 
-            // Property 4
+            // Property 4: the children of a red node must be black
             if (node.color == Color.RED && (node.left.color != Color.BLACK || node.right.color != Color.BLACK) ) {
                 return false;
             }
 
         }
 
-        // Property 5
+        // Property 5: for each node, all paths from the node to descendant leaves contain the same number of black nodes
         if (checkDescendantPaths(root) == -1) {
             return false;
         }
 
-        return true;
+        // TODO: Check property 3
+
+        // Check that the RBTree is also a BST
+        return isValidBST();
     }
 
     public ArrayList<Integer> inOrderTraversal() {
@@ -87,8 +97,12 @@ public class GradeableRBT extends RBTree{
         return values.equals(sortedValues);
     }
 
-
-    public boolean equals(GradeableRBT tree) {
-        return this.inOrderTraversal().equals(tree.inOrderTraversal());
+    public boolean isDesiredRBTree(ArrayList<Integer> values) {
+       if (!this.isValidRBTree()) {
+           return false;
+       }
+       ArrayList<Integer> copy_values = (ArrayList<Integer>) values.clone();
+       copy_values.sort(null);
+       return this.inOrderTraversal().equals(copy_values);
     }
 }

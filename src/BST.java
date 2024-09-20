@@ -1,5 +1,6 @@
 import java.util.*;
 
+@Deprecated
 public class BST {
     protected Node root;
 
