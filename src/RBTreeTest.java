@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -7,10 +8,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RBTreeTest {
 
+    // Check to see that the implementation works as a BST
+    @Test
+    @Tag("hidden")
+    @DisplayName("Root is nil")
+    void rootIsNil() {
+        RBTree t = new RBTreeSolution();
+        assertTrue(RBUtils.isValidRBTree(t));
+    }
+
+    // Check rotate on insert
     @Test
     @DisplayName("Rotate Right")
     void testRotateRight() {
-        TestableRB t = new TestableRB();
+        RBTree t = new RBTreeSolution();
         ArrayList<Integer> values = new ArrayList<>();
 
         values.add(7);
@@ -23,15 +34,15 @@ class RBTreeTest {
         values.add(22);
         values.add(15);
 
-        t.insertMultiple(values);
+        RBUtils.insertMultiple(t, values);
 
-        assertTrue(t.isDesiredRBTree(values));
+        assertTrue(RBUtils.isDesiredRBTree(t, values));
     }
 
     @Test
     @DisplayName("Check descendant paths condition")
     void checkDescendantPaths() {
-        TestableRB t = new TestableRB();
+        RBTree t = new RBTreeSolution();
         ArrayList<Integer> values = new ArrayList<>();
 
         values.add(7);
@@ -44,9 +55,9 @@ class RBTreeTest {
         values.add(22);
         values.add(15);
 
-        t.insertMultiple(values);
+        RBUtils.insertMultiple(t, values);
         t.root.left.color = Color.BLACK;
 
-        assertFalse(t.isDesiredRBTree(values));
+        assertFalse(RBUtils.isDesiredRBTree(t, values));
     }
 }

@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class TestableRB extends RBTree{
+public class RBUtils {
 
-   public void insertMultiple(ArrayList<Integer> values) {
+   public static void insertMultiple(RBTree t, ArrayList<Integer> values) {
        for (int value : values) {
-           this.insert(value);
+           t.insert(value);
        }
    }
 
-    private int checkDescendantPaths(RBTNode node) {
-       if (node == nil)  {
+    private static int checkDescendantPaths(RBTree t, RBTree.Node node) {
+       if (node == t.nil)  {
            return 1;
        }
 
-       int rightPaths = checkDescendantPaths(node.right);
-       int leftPaths = checkDescendantPaths(node.left);
+       int rightPaths = checkDescendantPaths(t, node.right);
+       int leftPaths = checkDescendantPaths(t, node.left);
 
        if (rightPaths == -1 || leftPaths == -1 || rightPaths != leftPaths) {
            return -1;
@@ -25,17 +25,17 @@ public class TestableRB extends RBTree{
 
     }
 
-    public boolean isValidRBTree() {
+    public static boolean isValidRBTree(RBTree t) {
         // Property 2: root node must be black
-        if (root.color != Color.BLACK) {
+        if (t.root.color != Color.BLACK) {
             return false;
         }
 
-        Stack<RBTNode> stack = new Stack<>();
-        stack.push(root);
+        Stack<RBTree.Node> stack = new Stack<>();
+        stack.push(t.root);
         while (!stack.isEmpty()) {
-            RBTNode node = stack.pop();
-            if (node == nil) {
+            RBTree.Node node = stack.pop();
+            if (node == t.nil) {
                continue;
             }
 
@@ -52,27 +52,27 @@ public class TestableRB extends RBTree{
         }
 
         // Property 5: for each node, all paths from the node to descendant leaves contain the same number of black nodes
-        if (checkDescendantPaths(root) == -1) {
+        if (checkDescendantPaths(t, t.root) == -1) {
             return false;
         }
 
         // TODO: Check property 3
 
         // Check that the RBTree is also a BST
-        return isValidBST();
+        return isValidBST(t);
     }
 
-    public ArrayList<Integer> inOrderTraversal() {
+    public static ArrayList<Integer> inOrderTraversal(RBTree t) {
         ArrayList<Integer> values = new ArrayList<Integer>();
-        if (root == nil) {
+        if (t.root == t.nil) {
             return values;
         }
 
-        Stack<RBTNode> stack = new Stack<>();
-        RBTNode curr = root;
+        Stack<RBTree.Node> stack = new Stack<>();
+        RBTree.Node curr = t.root;
 
-        while (curr != nil || !stack.isEmpty()) {
-            while (curr !=  nil) {
+        while (curr != t.nil || !stack.isEmpty()) {
+            while (curr !=  t.nil) {
                 stack.push(curr);
                 curr = curr.left;
             }
@@ -84,25 +84,25 @@ public class TestableRB extends RBTree{
         return values;
     }
 
-    private boolean isValidBST() {
-        if (root == nil) {
+    private static boolean isValidBST(RBTree t) {
+        if (t.root == t.nil) {
             return true;
         }
 
         // In order traversal, then check against sorted values
-        ArrayList<Integer> values = this.inOrderTraversal();
+        ArrayList<Integer> values = inOrderTraversal(t);
 
         ArrayList<Integer> sortedValues = (ArrayList<Integer>) values.clone();
         sortedValues.sort(null);
         return values.equals(sortedValues);
     }
 
-    public boolean isDesiredRBTree(ArrayList<Integer> values) {
-       if (!this.isValidRBTree()) {
+    public static boolean isDesiredRBTree(RBTree t, ArrayList<Integer> values) {
+       if (!isValidRBTree(t)) {
            return false;
        }
        ArrayList<Integer> copy_values = (ArrayList<Integer>) values.clone();
        copy_values.sort(null);
-       return this.inOrderTraversal().equals(copy_values);
+       return inOrderTraversal(t).equals(copy_values);
     }
 }

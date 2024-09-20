@@ -7,6 +7,10 @@ defined. Please use this for any external node in the tree as
 seen in class. There is also an Color enum file. You must use
 this enum as the color property for the nodes in your RBTree.
 
+## Constraints:
+- Initialize root to nil, use nil for all external nodes and parent of root
+
+
 ## Questions:
 - Should we give them the template file?
 - Should we ask them to provide a check validity implementation?
