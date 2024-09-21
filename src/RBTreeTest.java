@@ -1,9 +1,6 @@
-import org.junit.experimental.theories.suppliers.TestedOn;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,34 +9,52 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RBTreeTest {
 
+    private RBTree constructTree() {
+        return new RBTreeSolution(); // Change this to use MyRBTree or RBTreeSolution
+    }
+
     // @DisplayName("Insert Tests")
 
     // Check to see that the implementation works as a BST
     @Test
-    @Tag("hidden")
     @DisplayName("Root is nil")
     void rootIsNil() {
-        RBTree t = new RBTreeSolution();
+        RBTree t = constructTree();
         assertTrue(RBUtils.isValidRBTree(t));
     }
 
     // Check that only insert, and checkValid methods are visible
     @Test
-    @Tag("hidden")
     @DisplayName("Check Methods")
     void checkMethods() {
-        RBTree t = new RBTreeSolution();
+        RBTree t = constructTree();
 
         ArrayList<java.lang.reflect.Method> methods = new ArrayList<>(List.of(t.getClass().getDeclaredMethods()));
         methods.removeIf(m -> m.getModifiers() != Modifier.PUBLIC);
         assertEquals(2, methods.size());
     }
 
+    // Check insert no rotation
+    @Test
+    @DisplayName("Basic Insert")
+    void basicInsert() {
+        RBTree t = constructTree();
+        ArrayList<Integer> values = new ArrayList<>();
+
+        values.add(3);
+        values.add(5);
+        values.add(1);
+
+        RBUtils.insertMultiple(t, values);
+
+        assertTrue(RBUtils.isDesiredRBTree(t, values));
+    }
+
     // Check rotate on right subtree
     @Test
     @DisplayName("Rotate Right Subtree")
     void testRotateRight() {
-        RBTree t = new RBTreeSolution();
+        RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
 
         values.add(7);
@@ -61,7 +76,7 @@ class RBTreeTest {
     @Test
     @DisplayName("Rotate Left Subtree")
     void testRotateLeft() {
-        RBTree t = new RBTreeSolution();
+        RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
 
         values.add(30);
@@ -84,7 +99,7 @@ class RBTreeTest {
     @Test
     @DisplayName("Check descendent paths condition")
     void checkDescendantPaths() {
-        RBTree t = new RBTreeSolution();
+        RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
 
         values.add(7);
