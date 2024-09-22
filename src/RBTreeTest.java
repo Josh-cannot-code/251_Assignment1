@@ -117,4 +117,57 @@ class RBTreeTest {
 
         assertFalse(t.isValidRBT());
     }
+
+    @Test
+    @DisplayName("Test Time Complexity")
+    void testTimeComplexity() {
+
+        ArrayList<Integer> values = new ArrayList<>();
+        for (int i = 0; i < 10000; i++) {
+            values.add(i);
+        }
+
+        ArrayList<Long> times = new ArrayList<>();
+        ArrayList<Long> sol_times = new ArrayList<>();
+
+        RBTree t = constructTree();
+        RBTree t_sol = new RBTreeSolution();
+        for (int i = 0; i < 10; i++) {
+            t = constructTree();
+            t_sol = new RBTreeSolution();
+
+            long start = System.nanoTime();
+            RBUtils.insertMultiple(t, values);
+            long end = System.nanoTime();
+            times.add(end - start);
+
+            long start_sol = System.nanoTime();
+            RBUtils.insertMultiple(t_sol, values);
+            long end_sol = System.nanoTime();
+            sol_times.add(end_sol - start_sol);
+        }
+
+        long avg = 0;
+        long avg_sol = 0;
+        for (int i = 0; i < 10; i++) {
+            avg += times.get(i);
+            avg_sol += sol_times.get(i);
+        }
+        avg = avg / 10;
+        avg_sol = avg_sol / 10;
+
+
+        long finalAvg = avg;
+        long finalAvg_sol = avg_sol;
+
+        boolean same_complexity = Math.abs(finalAvg - finalAvg_sol) < 500000;
+
+        RBTree finalT_sol = t_sol;
+        RBTree finalT = t;
+        assertAll(
+                () -> assertTrue(RBUtils.isDesiredRBTree(finalT_sol, values)),
+                () -> assertTrue(RBUtils.isDesiredRBTree(finalT, values)),
+                () -> assertTrue(same_complexity)
+        );
+    }
 }
