@@ -3,7 +3,9 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -119,6 +121,7 @@ class RBTreeTest {
     void lotsOfInserts() {
         RBTree t1 = constructTree();
         RBTree t2 = constructTree();
+        RBTree t3 = constructTree();
 
         ArrayList<Integer> values = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
@@ -127,10 +130,13 @@ class RBTreeTest {
 
         RBUtils.insertMultiple(t1, values);
         RBUtils.insertMultiple(t2, new ArrayList<>(values.reversed()));
+        Collections.shuffle(values, new Random(16180339));
+        RBUtils.insertMultiple(t3, values);
 
         assertAll(
                 () -> assertTrue(RBUtils.isDesiredRBTree(t1, values)),
-                () -> assertTrue(RBUtils.isDesiredRBTree(t2, values))
+                () -> assertTrue(RBUtils.isDesiredRBTree(t2, values)),
+                () -> assertTrue(RBUtils.isDesiredRBTree(t3, values))
         );
     }
 
