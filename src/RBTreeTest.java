@@ -13,8 +13,6 @@ class RBTreeTest {
         return new RBTreeSolution(); // Change this to use MyRBTree or RBTreeSolution
     }
 
-    // @DisplayName("Insert Tests")
-
     // Check to see that the implementation works as a BST
     @Test
     @DisplayName("Root is nil")
@@ -94,8 +92,6 @@ class RBTreeTest {
         assertTrue(RBUtils.isDesiredRBTree(t, values));
     }
 
-    // @DisplayName("Check Valid RBT Tests")
-
     @Test
     @DisplayName("Check descendent paths condition")
     void checkDescendantPaths() {
@@ -116,6 +112,26 @@ class RBTreeTest {
         t.root.left.color = Color.BLACK;
 
         assertFalse(t.isValidRBT());
+    }
+
+    @Test
+    @DisplayName("Lots of Inserts")
+    void lotsOfInserts() {
+        RBTree t1 = constructTree();
+        RBTree t2 = constructTree();
+
+        ArrayList<Integer> values = new ArrayList<>();
+        for (int i = 0; i < 10000; i++) {
+           values.add(i);
+        }
+
+        RBUtils.insertMultiple(t1, values);
+        RBUtils.insertMultiple(t2, new ArrayList<>(values.reversed()));
+
+        assertAll(
+                () -> assertTrue(RBUtils.isDesiredRBTree(t1, values)),
+                () -> assertTrue(RBUtils.isDesiredRBTree(t2, values))
+        );
     }
 
     @Test
