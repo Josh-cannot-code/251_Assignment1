@@ -20,18 +20,18 @@ class RBTreeTest {
         return new RBTreeSolution(); // Change this to use MyRBTree or RBTreeSolution
     }
 
-    @Test
-    @Tag("score:1")
     @DisplayName("Code Correctness: 1")
+    @Tag("score:1")
+    @Test
     void rootIsNil() {
         RBTree t = constructTree();
         assertTrue(RBUtils.isValidRBTree(t));
     }
 
     // Check that only insert, and checkValid methods are visible
-    @Test
-    @Tag("score:1")
     @DisplayName("Code Correctness: 2")
+    @Tag("score:1")
+    @Test
     void checkMethods() {
         RBTree t = constructTree();
 
@@ -41,9 +41,9 @@ class RBTreeTest {
     }
 
     // No rotate or fixing
-    @Test
-    @Tag("score:1")
     @DisplayName("Insert: 1")
+    @Tag("score:1")
+    @Test
     void basicInsert1() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -58,9 +58,9 @@ class RBTreeTest {
     }
 
    // Handles negative
-    @Test
-    @Tag("score:1")
     @DisplayName("Insert: 2")
+    @Tag("score:1")
+    @Test
     void basicInsert2() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -75,9 +75,9 @@ class RBTreeTest {
 
 
     // Inserts maintaining balance
-    @Test
-    @Tag("score:1")
     @DisplayName("Insert: 3")
+    @Tag("score:1")
+    @Test
     void basicInsert3() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -98,9 +98,9 @@ class RBTreeTest {
     }
 
     // all negative
-    @Test
-    @Tag("score:1")
     @DisplayName("Insert: 4")
+    @Tag("score:1")
+    @Test
     void basicInsert4() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -121,9 +121,9 @@ class RBTreeTest {
     }
 
     // From the slides pre rotate
-    @Test
-    @Tag("score:1")
     @DisplayName("Insert: 5")
+    @Tag("score:1")
+    @Test
     void basicInsert5() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -143,9 +143,9 @@ class RBTreeTest {
     }
 
     // Check rotate on right subtree
-    @Test
-    @Tag("score:2")
     @DisplayName("Insert: 6")
+    @Tag("score:2")
+    @Test
     void testRotateRight() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -166,9 +166,9 @@ class RBTreeTest {
     }
 
     // Check rotate on left subtree
-    @Test
-    @Tag("score:2")
     @DisplayName("Insert: 7")
+    @Tag("score:2")
+    @Test
     void testRotateLeft() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -189,9 +189,9 @@ class RBTreeTest {
     }
 
 
-    @Test
-    @Tag("score:2")
     @DisplayName("Insert: 8")
+    @Tag("score:2")
+    @Test
     void lotsOfInserts() {
         RBTree t1 = constructTree();
         RBTree t2 = constructTree();
@@ -214,9 +214,9 @@ class RBTreeTest {
         );
     }
 
-    @Test
-    @Tag("score:5")
     @DisplayName("Time Complexity")
+    @Tag("score:5")
+    @Test
     void testTimeComplexity() {
 
         ArrayList<Integer> values = new ArrayList<>();
@@ -268,9 +268,9 @@ class RBTreeTest {
         );
     }
 
-    @Test
-    @Tag("score:1")
     @DisplayName("IsValidRBT: 1")
+    @Tag("score:1")
+    @Test
     void checkDescendantPaths() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -291,9 +291,9 @@ class RBTreeTest {
         assertFalse(t.isValidRBT());
     }
 
-    @Test
-    @Tag("score:1")
     @DisplayName("IsValidRBT: 2")
+    @Tag("score:1")
+    @Test
     void checkBlackRoot() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -314,9 +314,9 @@ class RBTreeTest {
         assertFalse(t.isValidRBT());
     }
 
-    @Test
-    @Tag("score:1")
     @DisplayName("IsValidRBT: 3")
+    @Tag("score:1")
+    @Test
     void checkRedNodeRedChild() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -337,9 +337,9 @@ class RBTreeTest {
     }
 
 
-    @Test
-    @Tag("score:1")
     @DisplayName("IsValidRBT: 4")
+    @Tag("score:1")
+    @Test
     void checkNilBlack() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -353,9 +353,9 @@ class RBTreeTest {
     }
 
 
-    @Test
-    @Tag("score:1")
     @DisplayName("IsValidRBT: 5")
+    @Tag("score:1")
+    @Test
     void checkNodesRedOrBlack() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
