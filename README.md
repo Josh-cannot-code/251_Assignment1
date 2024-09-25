@@ -13,3 +13,5 @@ use `nil` for all external nodes and for the parent of `root`.
 - Use the provided `Color` enum for the `color` property on nodes.
 - We will not insert a number that already exists in the tree.
 - Your insert operation should be `O(log(N))`.
+- In `isValidRBTree`, make sure to check all the conditions necessary
+for a tree to be a valid RB tree.

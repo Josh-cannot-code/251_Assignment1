@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Modifier;
@@ -10,14 +11,18 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RBTreeTest {
-
+    // TODO:
+    // Make lots of inserts smaller
+    // add weights
+    // No rotation fixup
+    // Names
     private RBTree constructTree() {
         return new RBTreeSolution(); // Change this to use MyRBTree or RBTreeSolution
     }
 
-    // Check to see that the implementation works as a BST
     @Test
-    @DisplayName("Root is nil")
+    @Tag("score: 1")
+    @DisplayName("Code Correctness: 1")
     void rootIsNil() {
         RBTree t = constructTree();
         assertTrue(RBUtils.isValidRBTree(t));
@@ -25,7 +30,8 @@ class RBTreeTest {
 
     // Check that only insert, and checkValid methods are visible
     @Test
-    @DisplayName("Check Methods")
+    @Tag("score: 1")
+    @DisplayName("Code Correctness: 2")
     void checkMethods() {
         RBTree t = constructTree();
 
@@ -34,10 +40,11 @@ class RBTreeTest {
         assertEquals(2, methods.size());
     }
 
-    // Check insert no rotation
+    // No rotate or fixing
     @Test
-    @DisplayName("Basic Insert")
-    void basicInsert() {
+    @Tag("score: 1")
+    @DisplayName("Insert: 1")
+    void basicInsert1() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
 
@@ -50,9 +57,95 @@ class RBTreeTest {
         assertTrue(RBUtils.isDesiredRBTree(t, values));
     }
 
+   // Handles negative
+    @Test
+    @Tag("score: 1")
+    @DisplayName("Insert: 2")
+    void basicInsert2() {
+        RBTree t = constructTree();
+        ArrayList<Integer> values = new ArrayList<>();
+
+        values.add(300);
+        values.add(-5);
+        values.add(400);
+        RBUtils.insertMultiple(t, values);
+
+        assertTrue(RBUtils.isDesiredRBTree(t, values));
+    }
+
+
+    // Inserts maintaining balance
+    @Test
+    @Tag("score: 1")
+    @DisplayName("Insert: 3")
+    void basicInsert3() {
+        RBTree t = constructTree();
+        ArrayList<Integer> values = new ArrayList<>();
+
+        values.add(10);
+
+        values.add(5);
+        values.add(15);
+
+        values.add(7);
+        values.add(3);
+        values.add(13);
+        values.add(17);
+
+        RBUtils.insertMultiple(t, values);
+
+        assertTrue(RBUtils.isDesiredRBTree(t, values));
+    }
+
+    // all negative
+    @Test
+    @Tag("score: 1")
+    @DisplayName("Insert: 4")
+    void basicInsert4() {
+        RBTree t = constructTree();
+        ArrayList<Integer> values = new ArrayList<>();
+
+        values.add(-10);
+
+        values.add(-5);
+        values.add(-15);
+
+        values.add(-7);
+        values.add(-3);
+        values.add(-13);
+        values.add(-17);
+
+        RBUtils.insertMultiple(t, values);
+
+        assertTrue(RBUtils.isDesiredRBTree(t, values));
+    }
+
+    // From the slides pre rotate
+    @Test
+    @Tag("score: 1")
+    @DisplayName("Insert: 5")
+    void basicInsert5() {
+        RBTree t = constructTree();
+        ArrayList<Integer> values = new ArrayList<>();
+
+        values.add(7);
+        values.add(3);
+        values.add(18);
+        values.add(10);
+        values.add(20);
+        values.add(8);
+        values.add(11);
+        values.add(22);
+
+        RBUtils.insertMultiple(t, values);
+
+        assertTrue(RBUtils.isDesiredRBTree(t, values));
+    }
+
     // Check rotate on right subtree
     @Test
-    @DisplayName("Rotate Right Subtree")
+    @Tag("score: 2")
+    @DisplayName("Insert: 6")
     void testRotateRight() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -74,7 +167,8 @@ class RBTreeTest {
 
     // Check rotate on left subtree
     @Test
-    @DisplayName("Rotate Left Subtree")
+    @Tag("score: 2")
+    @DisplayName("Insert: 7")
     void testRotateLeft() {
         RBTree t = constructTree();
         ArrayList<Integer> values = new ArrayList<>();
@@ -94,37 +188,17 @@ class RBTreeTest {
         assertTrue(RBUtils.isDesiredRBTree(t, values));
     }
 
-    @Test
-    @DisplayName("Check descendent paths condition")
-    void checkDescendantPaths() {
-        RBTree t = constructTree();
-        ArrayList<Integer> values = new ArrayList<>();
-
-        values.add(7);
-        values.add(3);
-        values.add(18);
-        values.add(10);
-        values.add(20);
-        values.add(8);
-        values.add(11);
-        values.add(22);
-        values.add(15);
-
-        RBUtils.insertMultiple(t, values);
-        t.root.left.color = Color.BLACK;
-
-        assertFalse(t.isValidRBT());
-    }
 
     @Test
-    @DisplayName("Lots of Inserts")
+    @Tag("score: 2")
+    @DisplayName("Insert 8")
     void lotsOfInserts() {
         RBTree t1 = constructTree();
         RBTree t2 = constructTree();
         RBTree t3 = constructTree();
 
         ArrayList<Integer> values = new ArrayList<>();
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 1000; i++) {
            values.add(i);
         }
 
@@ -141,7 +215,8 @@ class RBTreeTest {
     }
 
     @Test
-    @DisplayName("Test Time Complexity")
+    @Tag("score: 5")
+    @DisplayName("Time Complexity")
     void testTimeComplexity() {
 
         ArrayList<Integer> values = new ArrayList<>();
@@ -191,5 +266,105 @@ class RBTreeTest {
                 () -> assertTrue(RBUtils.isDesiredRBTree(finalT, values)),
                 () -> assertTrue(same_complexity)
         );
+    }
+
+    @Test
+    @Tag("score: 1")
+    @DisplayName("IsValidRBT: 1")
+    void checkDescendantPaths() {
+        RBTree t = constructTree();
+        ArrayList<Integer> values = new ArrayList<>();
+
+        values.add(7);
+        values.add(3);
+        values.add(18);
+        values.add(10);
+        values.add(20);
+        values.add(8);
+        values.add(11);
+        values.add(22);
+        values.add(15);
+
+        RBUtils.insertMultiple(t, values);
+        t.root.left.color = Color.BLACK;
+
+        assertFalse(t.isValidRBT());
+    }
+
+    @Test
+    @Tag("score: 1")
+    @DisplayName("IsValidRBT: 2")
+    void checkBlackRoot() {
+        RBTree t = constructTree();
+        ArrayList<Integer> values = new ArrayList<>();
+
+        values.add(7);
+        values.add(3);
+        values.add(18);
+        values.add(10);
+        values.add(20);
+        values.add(8);
+        values.add(11);
+        values.add(22);
+        values.add(15);
+
+        RBUtils.insertMultiple(t, values);
+        t.root.color = Color.RED;
+
+        assertFalse(t.isValidRBT());
+    }
+
+    @Test
+    @Tag("score: 1")
+    @DisplayName("IsValidRBT: 3")
+    void checkRedNodeRedChild() {
+        RBTree t = constructTree();
+        ArrayList<Integer> values = new ArrayList<>();
+
+        values.add(7);
+        values.add(3);
+        values.add(18);
+        values.add(10);
+        values.add(20);
+        values.add(8);
+        values.add(11);
+        values.add(22);
+
+        RBUtils.insertMultiple(t, values);
+        t.root.right.left.color = Color.RED;
+
+        assertFalse(t.isValidRBT());
+    }
+
+
+    @Test
+    @Tag("score: 1")
+    @DisplayName("IsValidRBT: 4")
+    void checkNilBlack() {
+        RBTree t = constructTree();
+        ArrayList<Integer> values = new ArrayList<>();
+
+        values.add(7);
+
+        RBUtils.insertMultiple(t, values);
+        t.root.right.color = Color.RED;
+
+        assertFalse(t.isValidRBT());
+    }
+
+
+    @Test
+    @Tag("score: 1")
+    @DisplayName("IsValidRBT: 5")
+    void checkNodesRedOrBlack() {
+        RBTree t = constructTree();
+        ArrayList<Integer> values = new ArrayList<>();
+
+        values.add(7);
+
+        RBUtils.insertMultiple(t, values);
+        t.root.color = null;
+
+        assertFalse(t.isValidRBT());
     }
 }

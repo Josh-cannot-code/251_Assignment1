@@ -56,7 +56,10 @@ public class RBUtils {
             return false;
         }
 
-        // TODO: Check property 3
+        // Property 3: Nil (external nodes) is black
+        if (t.nil.color != Color.BLACK) {
+            return false;
+        }
 
         // Check that the RBTree is also a BST
         return isValidBST(t);
