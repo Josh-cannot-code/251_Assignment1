@@ -11,11 +11,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RBTreeTest {
-    // TODO:
-    // Make lots of inserts smaller
-    // add weights
-    // No rotation fixup
-    // Names
+
     private RBTree constructTree() {
         return new RBTreeSolution(); // Change this to use MyRBTree or RBTreeSolution
     }
