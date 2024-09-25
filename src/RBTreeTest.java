@@ -21,7 +21,7 @@ class RBTreeTest {
     }
 
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("Code Correctness: 1")
     void rootIsNil() {
         RBTree t = constructTree();
@@ -30,7 +30,7 @@ class RBTreeTest {
 
     // Check that only insert, and checkValid methods are visible
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("Code Correctness: 2")
     void checkMethods() {
         RBTree t = constructTree();
@@ -42,7 +42,7 @@ class RBTreeTest {
 
     // No rotate or fixing
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("Insert: 1")
     void basicInsert1() {
         RBTree t = constructTree();
@@ -59,7 +59,7 @@ class RBTreeTest {
 
    // Handles negative
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("Insert: 2")
     void basicInsert2() {
         RBTree t = constructTree();
@@ -76,7 +76,7 @@ class RBTreeTest {
 
     // Inserts maintaining balance
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("Insert: 3")
     void basicInsert3() {
         RBTree t = constructTree();
@@ -99,7 +99,7 @@ class RBTreeTest {
 
     // all negative
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("Insert: 4")
     void basicInsert4() {
         RBTree t = constructTree();
@@ -122,7 +122,7 @@ class RBTreeTest {
 
     // From the slides pre rotate
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("Insert: 5")
     void basicInsert5() {
         RBTree t = constructTree();
@@ -144,7 +144,7 @@ class RBTreeTest {
 
     // Check rotate on right subtree
     @Test
-    @Tag("score: 2")
+    @Tag("score:2")
     @DisplayName("Insert: 6")
     void testRotateRight() {
         RBTree t = constructTree();
@@ -167,7 +167,7 @@ class RBTreeTest {
 
     // Check rotate on left subtree
     @Test
-    @Tag("score: 2")
+    @Tag("score:2")
     @DisplayName("Insert: 7")
     void testRotateLeft() {
         RBTree t = constructTree();
@@ -190,8 +190,8 @@ class RBTreeTest {
 
 
     @Test
-    @Tag("score: 2")
-    @DisplayName("Insert 8")
+    @Tag("score:2")
+    @DisplayName("Insert: 8")
     void lotsOfInserts() {
         RBTree t1 = constructTree();
         RBTree t2 = constructTree();
@@ -215,7 +215,7 @@ class RBTreeTest {
     }
 
     @Test
-    @Tag("score: 5")
+    @Tag("score:5")
     @DisplayName("Time Complexity")
     void testTimeComplexity() {
 
@@ -269,7 +269,7 @@ class RBTreeTest {
     }
 
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("IsValidRBT: 1")
     void checkDescendantPaths() {
         RBTree t = constructTree();
@@ -292,7 +292,7 @@ class RBTreeTest {
     }
 
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("IsValidRBT: 2")
     void checkBlackRoot() {
         RBTree t = constructTree();
@@ -315,7 +315,7 @@ class RBTreeTest {
     }
 
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("IsValidRBT: 3")
     void checkRedNodeRedChild() {
         RBTree t = constructTree();
@@ -338,7 +338,7 @@ class RBTreeTest {
 
 
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("IsValidRBT: 4")
     void checkNilBlack() {
         RBTree t = constructTree();
@@ -354,7 +354,7 @@ class RBTreeTest {
 
 
     @Test
-    @Tag("score: 1")
+    @Tag("score:1")
     @DisplayName("IsValidRBT: 5")
     void checkNodesRedOrBlack() {
         RBTree t = constructTree();
